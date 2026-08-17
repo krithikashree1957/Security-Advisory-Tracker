@@ -1,8 +1,10 @@
 # Product Requirements Document
 
 **Project:** Security Advisory Tracker — Scrape-Verse Hackathon (Solo Project)
-**Author:** KRITHIKA SHREE K
-**GitHub:** @krithikashree1957
+
+**Author:** Krithika Shree K
+
+**GitHub:** [@krithikashree1957](https://github.com/krithikashree1957)
 
 ## 1. Product Name
 
@@ -10,11 +12,11 @@ Security Advisory Tracker
 
 ## 2. One-Line Product Description
 
-A self-healing scraper (built with Bright Data Scraper Studio) that tracks GitHub Security Advisories, flags actively-exploited CVEs using CISA KEV data, and surfaces them in a clean, chart-driven dashboard.
+A self-healing scraper (built with Bright Data Scraper Studio) that tracks GitHub Security Advisories, flags actively-exploited CVEs using CISA KEV data, and surfaces them in a clean, chart-driven[...]
 
 ## 3. Problem Statement
 
-Vulnerability information is fragmented across many sources and changes constantly. Manually checking advisories is slow, and raw CVE feeds don't tell a reader which vulnerabilities are actually being exploited right now versus merely theoretically severe. Traditional scrapers also break silently when a site's layout changes, producing data gaps with no warning.
+Vulnerability information is fragmented across many sources and changes constantly. Manually checking advisories is slow, and raw CVE feeds don't tell a reader which vulnerabilities are actually b[...]
 
 ## 4. Target Users
 
@@ -58,11 +60,11 @@ A self-healing scraper that:
 
 | ID | Requirement |
 |----|-------------|
-| FR1 | **Data Collection** — The system shall scrape GitHub Security Advisories (github.com/advisories) using a custom Bright Data Scraper Studio scraper, extracting: CVE ID, title/summary, severity, affected ecosystem, published date, advisory URL. |
-| FR2 | **KEV Enrichment** — The system shall cross-reference each scraped CVE against the CISA KEV feed (public JSON, pulled directly — not scraped) and tag matches as "Patch Now" (actively exploited). |
-| FR3 | **Self-Healing Logic** — The scraper shall implement fallback extraction for each field, described in plain language to Scraper Studio rather than hard-coded selectors. The system shall log which layer succeeded on every run. |
+| FR1 | **Data Collection** — The system shall scrape GitHub Security Advisories (github.com/advisories) using a custom Bright Data Scraper Studio scraper, extracting: CVE ID, title/summary, sev[...]
+| FR2 | **KEV Enrichment** — The system shall cross-reference each scraped CVE against the CISA KEV feed (public JSON, pulled directly — not scraped) and tag matches as "Patch Now" (actively e[...]
+| FR3 | **Self-Healing Logic** — The scraper shall implement fallback extraction for each field, described in plain language to Scraper Studio rather than hard-coded selectors. The system shall [...]
 | FR4 | **Data Normalization** — The system shall normalize scraped and KEV data into a common schema and remove duplicate CVE entries. |
-| FR5 | **Dashboard** — The system shall display: a severity-breakdown chart, an advisories-over-time trend chart, a filterable table (CVE ID, Severity, Ecosystem, KEV status, Link), and a visible "Patch Now" section for KEV-flagged items. Dark, security-monitoring visual theme. |
+| FR5 | **Dashboard** — The system shall display: a severity-breakdown chart, an advisories-over-time trend chart, a filterable table (CVE ID, Severity, Ecosystem, KEV status, Link), and a visib[...]
 | FR6 | **Logging and Health** — The system shall record run metadata (timestamp, total records, fallback count) and display a "Scraper Health" section on the dashboard. |
 
 ## 10. Non-Functional Requirements
@@ -141,4 +143,3 @@ Charts and the dark dashboard theme are core MVP deliverables, not stretch goals
 - A stable internet connection is available for scraping and local development
 
 ---
-
