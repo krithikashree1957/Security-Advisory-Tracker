@@ -64,7 +64,7 @@ I built a self-healing scraper that:
 ![Scraper Health Panel](./docs/screenshots/scraper-health.png)  
 *Scraper Health panel showing fallback count and last run time*
 
-*(Add your actual screenshots to `docs/screenshots/` and update paths above)*
+*(Screenshots to be added)*
 
 ---
 
@@ -384,7 +384,7 @@ This project is built for the Scrape-Verse Hackathon. All data sources are publi
 
 For questions or feedback:
 - **GitHub:** [@krithikashree1957](https://github.com/krithikashree1957)
-- **Email:** [Insert your email if you want to share it]
+- **Email:** krithikashr@gmail.com
 
 ---
 
