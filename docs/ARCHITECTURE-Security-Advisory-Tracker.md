@@ -1,20 +1,18 @@
 # System Architecture Document: Security Advisory Tracker & Dashboard
 
-**Project:** Security Advisory Tracker — Scrape-Verse Hackathon (Solo Project)
+**Project:** Security Advisory Tracker — Scrape-Verse Hackathon (Solo Project)  
+**Author:** KRITHIKA SHREE K  
+**GitHub:** [@krithikashree1957](https://github.com/krithikashree1957)  
+**Hackathon:** Into the Scrape-Verse (WeMakeDevs × Bright Data)  
 
-**Author:** Krithika Shree K
-
-**GitHub:** [@krithikashree1957](https://github.com/krithikashree1957)
-
-**Hackathon:** Into the Scrape-Verse (WeMakeDevs × Bright Data)
 
 ---
 
 ## 1. Overview
 
-This document describes the system architecture for the **Security Advisory Tracker**, a self-healing web scraper and dashboard built for the Scrape-Verse Hackathon. The system collects public cyb[
+This document describes the system architecture for the **Security Advisory Tracker**, a self-healing web scraper and dashboard built for the Scrape-Verse Hackathon. The system collects public cybersecurity vulnerability information from **GitHub Advisories** and the **CISA Known Exploited Vulnerabilities (KEV)** feed, normalizes and deduplicates the data, and presents it through a simple, searchable dashboard.
 
-The architecture prioritizes **simplicity, clarity, and demo-ability** for a one-week hackathon while satisfying the core hackathon requirement: building a scraper that can detect and adapt to web[
+The architecture prioritizes **simplicity, clarity, and demo-ability** for a one-week hackathon while satisfying the core hackathon requirement: building a scraper that can detect and adapt to website structure changes (self-healing). [cite:45]
 
 ---
 
@@ -28,7 +26,7 @@ The architecture prioritizes **simplicity, clarity, and demo-ability** for a one
 | **Data Collection** | Bright Data Scraper Studio (CLI/SDK) | Custom collector executing scraper logic for GitHub Advisories. |
 | **Enrichment Source** | CISA KEV JSON Feed | Direct HTTP fetch using Python `requests`. |
 
-**Rationale:** Using a pure Python stack collapses three traditionally separate layers (Frontend, REST API Backend, and Database Connector) into a single monolithic Python execution model. This el[
+**Rationale:** Using a pure Python stack collapses three traditionally separate layers (Frontend, REST API Backend, and Database Connector) into a single monolithic Python execution model. This eliminates CORS configuration issues, JSON serialization overhead, context switching across languages, and complex state management across network boundaries.
 
 ---
 
@@ -46,7 +44,7 @@ This project uses **Option B** from the MVP design:
    - Type: Official JSON feed of vulnerabilities known to be actively exploited in the wild.  
    - Access: Direct HTTP GET using Python `requests`.  
 
-**Note:** Both sources are publicly accessible and do not require authentication. The scraper respects rate limits and robots.txt policies. When possible, structured APIs/feeds are preferred over [
+**Note:** Both sources are publicly accessible and do not require authentication. The scraper respects rate limits and robots.txt policies. When possible, structured APIs/feeds are preferred over HTML scraping.
 
 ---
 
@@ -250,7 +248,7 @@ CREATE INDEX IF NOT EXISTS idx_ecosystem ON advisories(ecosystem);
 
 ## 8. Authentication Approach
 
-**None (Public Read-Only Access):** The dashboard displays publicly accessible threat intelligence and advisory metadata. Implementing authentication adds session management overhead and user dat[
+**None (Public Read-Only Access):** The dashboard displays publicly accessible threat intelligence and advisory metadata. Implementing authentication adds session management overhead and user database management without adding value to the hackathon presentation.
 
 ---
 
@@ -274,7 +272,7 @@ CREATE INDEX IF NOT EXISTS idx_ecosystem ON advisories(ecosystem);
 ## 10. AI Model Integration
 
 - **Build-Time Usage Only:** AI models (LLMs) are utilized solely during development (AI coding assistance and Scraper Studio field extraction rules generation).
-- **Runtime Execution:** Zero live LLM calls. The application relies on deterministic Python code, SQL, and direct JSON field matches at runtime, avoiding latency, API cost, and hallucination ris[
+- **Runtime Execution:** Zero live LLM calls. The application relies on deterministic Python code, SQL, and direct JSON field matches at runtime, avoiding latency, API cost, and hallucination risks during live demos.
 
 ---
 
@@ -356,7 +354,7 @@ security-advisory-tracker/
          (severity,)
      )
      ```
-    - This completely prevents SQL injection.
+   - This completely prevents SQL injection.
 
 3. **Output Sanitization**  
    - Data rendered inside Streamlit tables is formatted using built-in Streamlit DataFrame handlers to avoid Cross-Site Scripting (XSS).
@@ -395,19 +393,19 @@ security-advisory-tracker/
 ## 16. Simplifications for a Hackathon
 
 1. **Monolithic Single Process**  
-    - Bypasses separate REST API framework development (FastAPI/Flask) to keep logic localized.
+   - Bypasses separate REST API framework development (FastAPI/Flask) to keep logic localized.
 
 2. **Direct SQL over ORMs**  
-    - Uses raw parameterized `sqlite3` statements instead of complex SQLAlchemy setups.
+   - Uses raw parameterized `sqlite3` statements instead of complex SQLAlchemy setups.
 
 3. **In-Memory Refresh Triggering**  
-    - Pipeline runs synchronously on app launch or manual button press rather than using complex background task queues (e.g., Celery/Redis).
+   - Pipeline runs synchronously on app launch or manual button press rather than using complex background task queues (e.g., Celery/Redis).
 
 4. **No Authentication**  
-    - Public read-only access eliminates session management complexity.
+   - Public read-only access eliminates session management complexity.
 
 5. **No Runtime AI**  
-    - AI used only for development assistance; runtime is fully deterministic.
+   - AI used only for development assistance; runtime is fully deterministic.
 
 ---
 

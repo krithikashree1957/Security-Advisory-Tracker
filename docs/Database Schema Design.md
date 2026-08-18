@@ -2,7 +2,7 @@
 **Security Advisory Tracker — Scrape-Verse Hackathon**
 **Project:** Security Advisory Tracker — Scrape-Verse Hackathon (Solo Project)  
 **Author:** KRITHIKA SHREE K  
-**GitHub:** @krithikashree1957  
+**GitHub:** [@krithikashree1957](https://github.com/krithikashree1957)  
 **Hackathon:** Into the Scrape-Verse (WeMakeDevs × Bright Data)  
 
 ---
