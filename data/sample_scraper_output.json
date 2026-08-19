@@ -1,0 +1,52 @@
+{
+  "_comment": "DEVELOPMENT FIXTURE - NOT REAL SCRAPED DATA. Never present this as real Bright Data output. Defines the expected contract for the real Scraper Studio collector (Phase 6).",
+  "is_fixture": true,
+  "source": "GITHUB_ADVISORY",
+  "fetched_at": "2026-08-19T16:35:00Z",
+  "record_count": 4,
+  "records": [
+    {
+      "cve_id": "CVE-2024-12345",
+      "ghsa_id": "GHSA-aaaa-bbbb-cccc",
+      "title": "Remote Code Execution in lodash",
+      "severity": "CRITICAL",
+      "ecosystem": "npm",
+      "affected_package": "lodash",
+      "published_at": "2024-08-10T14:20:00Z",
+      "advisory_url": "https://github.com/advisories/GHSA-aaaa-bbbb-cccc",
+      "extraction_method": "primary"
+    },
+    {
+      "cve_id": "CVE-2023-98765",
+      "ghsa_id": "GHSA-dddd-eeee-ffff",
+      "title": "SQL Injection in requests",
+      "severity": "HIGH",
+      "ecosystem": "PyPI",
+      "affected_package": "requests",
+      "published_at": "2023-11-05T09:15:00Z",
+      "advisory_url": "https://github.com/advisories/GHSA-dddd-eeee-ffff",
+      "extraction_method": "fallback"
+    },
+    {
+      "ghsa_id": "GHSA-1111-2222-3333",
+      "title": "Denial of Service in express",
+      "severity": "MEDIUM",
+      "ecosystem": "npm",
+      "affected_package": "express",
+      "published_at": "2024-08-01T08:00:00Z",
+      "advisory_url": "https://github.com/advisories/GHSA-1111-2222-3333",
+      "extraction_method": "primary"
+    },
+    {
+      "cve_id": "CVE-2024-55555",
+      "ghsa_id": "GHSA-4444-5555-6666",
+      "title": "Path Traversal in go-git",
+      "severity": null,
+      "ecosystem": "Go",
+      "affected_package": "go-git",
+      "published_at": "2024-08-15T11:45:00Z",
+      "advisory_url": "https://github.com/advisories/GHSA-4444-5555-6666",
+      "extraction_method": "failed"
+    }
+  ]
+}
