@@ -1,0 +1,7 @@
+# Security Advisory Tracker — Python dependencies
+# Install with:  pip install -r requirements.txt
+
+streamlit>=1.33     # Dashboard UI framework (dark theme, charts, filters)
+pandas>=2.0         # DataFrames for charts and tables in the dashboard
+requests>=2.31      # Fetch the public CISA KEV JSON feed
+python-dotenv>=1.0  # Load BRIGHT_DATA_API_KEY from .env
