@@ -8,6 +8,7 @@ venv/
 data/*.db
 data/*.db-journal
 /data/brightdata_output.json
+data/kev_cache.json
 # OS / editor
 .DS_Store
 Thumbs.db
