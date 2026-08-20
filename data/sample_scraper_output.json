@@ -1,52 +1,652 @@
-{
-  "_comment": "DEVELOPMENT FIXTURE - NOT REAL SCRAPED DATA. Never present this as real Bright Data output. Defines the expected contract for the real Scraper Studio collector (Phase 6).",
-  "is_fixture": true,
-  "source": "GITHUB_ADVISORY",
-  "fetched_at": "2026-08-19T16:35:00Z",
-  "record_count": 4,
-  "records": [
-    {
-      "cve_id": "CVE-2024-12345",
-      "ghsa_id": "GHSA-aaaa-bbbb-cccc",
-      "title": "Remote Code Execution in lodash",
-      "severity": "CRITICAL",
-      "ecosystem": "npm",
-      "affected_package": "lodash",
-      "published_at": "2024-08-10T14:20:00Z",
-      "advisory_url": "https://github.com/advisories/GHSA-aaaa-bbbb-cccc",
-      "extraction_method": "primary"
-    },
-    {
-      "cve_id": "CVE-2023-98765",
-      "ghsa_id": "GHSA-dddd-eeee-ffff",
-      "title": "SQL Injection in requests",
-      "severity": "HIGH",
-      "ecosystem": "PyPI",
-      "affected_package": "requests",
-      "published_at": "2023-11-05T09:15:00Z",
-      "advisory_url": "https://github.com/advisories/GHSA-dddd-eeee-ffff",
-      "extraction_method": "fallback"
-    },
-    {
-      "ghsa_id": "GHSA-1111-2222-3333",
-      "title": "Denial of Service in express",
-      "severity": "MEDIUM",
-      "ecosystem": "npm",
-      "affected_package": "express",
-      "published_at": "2024-08-01T08:00:00Z",
-      "advisory_url": "https://github.com/advisories/GHSA-1111-2222-3333",
-      "extraction_method": "primary"
-    },
-    {
-      "cve_id": "CVE-2024-55555",
-      "ghsa_id": "GHSA-4444-5555-6666",
-      "title": "Path Traversal in go-git",
-      "severity": null,
-      "ecosystem": "Go",
-      "affected_package": "go-git",
-      "published_at": "2024-08-15T11:45:00Z",
-      "advisory_url": "https://github.com/advisories/GHSA-4444-5555-6666",
-      "extraction_method": "failed"
+[
+  {
+    "ghsa_id": "GHSA-7788-ghfq-c6mh",
+    "title": "Froxlor: Credential and 2FA secret disclosure via Froxlor API endpoints",
+    "severity": "CRITICAL",
+    "ecosystem": "Composer",
+    "affected_package": "froxlor/froxlor",
+    "published_at": "2026-06-29T06:41:42Z",
+    "advisory_url": "https://github.com/advisories/GHSA-7788-ghfq-c6mh",
+    "product_page_url": "https://github.com/advisories/GHSA-7788-ghfq-c6mh",
+    "input": {
+      "url": "https://github.com/advisories"
     }
-  ]
-}
+  },
+  {
+    "ghsa_id": "GHSA-rjg6-39jm-rgg4",
+    "title": "@better-auth/scim: account takeover and stale access via SCIM provider-id collision",
+    "severity": "CRITICAL",
+    "ecosystem": "npm",
+    "affected_package": "@better-auth/scim",
+    "published_at": "2026-06-26T22:32:52Z",
+    "advisory_url": "https://github.com/advisories/GHSA-rjg6-39jm-rgg4",
+    "product_page_url": "https://github.com/advisories/GHSA-rjg6-39jm-rgg4",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-fcw5-x6j4-ccmp",
+    "title": "Jupyter Server: Stored XSS in `NbconvertFileHandler` / `NbconvertPostHandler` via missing `sandbox` CSP",
+    "severity": "CRITICAL",
+    "ecosystem": "pip",
+    "affected_package": "jupyter-server",
+    "published_at": "2026-06-17T12:38:28Z",
+    "advisory_url": "https://github.com/advisories/GHSA-fcw5-x6j4-ccmp",
+    "product_page_url": "https://github.com/advisories/GHSA-fcw5-x6j4-ccmp",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-whxw-24jc-cwmv",
+    "title": "Kirby: External Initialization of the Panel on reverse proxy setups with the `Forwarded` header",
+    "severity": "CRITICAL",
+    "ecosystem": "Composer",
+    "affected_package": "getkirby/cms",
+    "published_at": "2026-06-17T10:32:25Z",
+    "advisory_url": "https://github.com/advisories/GHSA-whxw-24jc-cwmv",
+    "product_page_url": "https://github.com/advisories/GHSA-whxw-24jc-cwmv",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-f49m-vf83-692w",
+    "title": "i18next-http-middleware: MissingKeyHandler does not reject keys whose segments contain prototype-polluting names",
+    "severity": "CRITICAL",
+    "ecosystem": "npm",
+    "affected_package": "i18next-http-middleware",
+    "published_at": "2026-05-22T05:21:17Z",
+    "advisory_url": "https://github.com/advisories/GHSA-f49m-vf83-692w",
+    "product_page_url": "https://github.com/advisories/GHSA-f49m-vf83-692w",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-363v-5rh8-23wg",
+    "title": "AVideo has Plaintext Video Password Storage",
+    "severity": "CRITICAL",
+    "ecosystem": "Composer",
+    "affected_package": "wwbn/avideo",
+    "published_at": "2026-03-24T13:53:11Z",
+    "advisory_url": "https://github.com/advisories/GHSA-363v-5rh8-23wg",
+    "product_page_url": "https://github.com/advisories/GHSA-363v-5rh8-23wg",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-2933-q333-qg83",
+    "title": "i18next-fs-backend vulnerable to prototype pollution via crafted missing-key string",
+    "severity": "CRITICAL",
+    "ecosystem": "npm",
+    "affected_package": "i18next-fs-backend",
+    "published_at": "2026-05-22T05:21:14Z",
+    "advisory_url": "https://github.com/advisories/GHSA-2933-q333-qg83",
+    "product_page_url": "https://github.com/advisories/GHSA-2933-q333-qg83",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-v8hw-mh8c-jxfc",
+    "title": "Langflow has Authenticated Code Execution in Agentic Assistant Validation",
+    "severity": "CRITICAL",
+    "ecosystem": "pip",
+    "affected_package": "langflow",
+    "published_at": "2026-03-24T15:22:08Z",
+    "advisory_url": "https://github.com/advisories/GHSA-v8hw-mh8c-jxfc",
+    "product_page_url": "https://github.com/advisories/GHSA-v8hw-mh8c-jxfc",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-fm6c-rhcf-7439",
+    "title": "Cockpit is vulnerable to arbitrary code execution",
+    "severity": "CRITICAL",
+    "ecosystem": "Composer",
+    "affected_package": "cockpit-hq/cockpit",
+    "published_at": "2026-04-29T15:30:39Z",
+    "advisory_url": "https://github.com/advisories/GHSA-fm6c-rhcf-7439",
+    "product_page_url": "https://github.com/advisories/GHSA-fm6c-rhcf-7439",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-g5cg-8x5w-7jpm",
+    "title": "OpenClaw: Heartbeat context inheritance bypasses sandbox via senderIsOwner escalation",
+    "severity": "CRITICAL",
+    "ecosystem": "npm",
+    "affected_package": "openclaw",
+    "published_at": "2026-03-31T21:45:36Z",
+    "advisory_url": "https://github.com/advisories/GHSA-g5cg-8x5w-7jpm",
+    "product_page_url": "https://github.com/advisories/GHSA-g5cg-8x5w-7jpm",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-mvf2-f6gm-w987",
+    "title": "fast-jwt: Incomplete fix for CVE-2023-48223: JWT Algorithm Confusion via Whitespace-Prefixed RSA Public Key",
+    "severity": "CRITICAL",
+    "ecosystem": "npm",
+    "affected_package": "fast-jwt",
+    "published_at": "2026-04-02T08:53:21Z",
+    "advisory_url": "https://github.com/advisories/GHSA-mvf2-f6gm-w987",
+    "product_page_url": "https://github.com/advisories/GHSA-mvf2-f6gm-w987",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-w4v6-g3wm-w36c",
+    "title": "OpenClaw: QQBot admin commands could skip DM-only and allowFrom policy",
+    "severity": "CRITICAL",
+    "ecosystem": "npm",
+    "affected_package": "openclaw",
+    "published_at": "2026-05-28T17:39:44Z",
+    "advisory_url": "https://github.com/advisories/GHSA-w4v6-g3wm-w36c",
+    "product_page_url": "https://github.com/advisories/GHSA-w4v6-g3wm-w36c",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-v5rc-cpwc-cfpr",
+    "title": "Lemur: Incomplete fix for GHSA-v2wp-frmc-5q3v -- ACME authority update endpoint allows non-admin to replace `acme_url` with internal IP, bypassing allowlist",
+    "severity": "HIGH",
+    "ecosystem": "pip",
+    "affected_package": "lemur",
+    "published_at": "2026-07-06T18:29:24Z",
+    "advisory_url": "https://github.com/advisories/GHSA-v5rc-cpwc-cfpr",
+    "product_page_url": "https://github.com/advisories/GHSA-v5rc-cpwc-cfpr",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-wg9g-w2j2-8pgr",
+    "title": "MONAI: Unsafe deserialization in NumpyReader allows arbitrary code execution via malicious .npy files",
+    "severity": "HIGH",
+    "ecosystem": "pip",
+    "affected_package": "monai",
+    "published_at": "2026-06-11T12:42:26Z",
+    "advisory_url": "https://github.com/advisories/GHSA-wg9g-w2j2-8pgr",
+    "product_page_url": "https://github.com/advisories/GHSA-wg9g-w2j2-8pgr",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-xpmj-wjcp-6pww",
+    "title": "Lemur: Server-Side Request Forgery via the ACME client following server-controlled URLs",
+    "severity": "HIGH",
+    "ecosystem": "pip",
+    "affected_package": "lemur",
+    "published_at": "2026-07-06T18:27:43Z",
+    "advisory_url": "https://github.com/advisories/GHSA-xpmj-wjcp-6pww",
+    "product_page_url": "https://github.com/advisories/GHSA-xpmj-wjcp-6pww",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-w27m-rmmf-g5w4",
+    "title": "Froxlor: Second-Order SQL Injection via `Admins.add` `ipaddress` Parameter Allows Full Database Exfiltration",
+    "severity": "HIGH",
+    "ecosystem": "Composer",
+    "affected_package": "froxlor/froxlor",
+    "published_at": "2026-06-29T06:42:30Z",
+    "advisory_url": "https://github.com/advisories/GHSA-w27m-rmmf-g5w4",
+    "product_page_url": "https://github.com/advisories/GHSA-w27m-rmmf-g5w4",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-43gm-9rr3-cx7g",
+    "title": "Froxlor: Stored XSS in DNS TXT Record Content Allows Customer-to-Admin Account Takeover",
+    "severity": "HIGH",
+    "ecosystem": "Composer",
+    "affected_package": "froxlor/froxlor",
+    "published_at": "2026-06-29T06:42:18Z",
+    "advisory_url": "https://github.com/advisories/GHSA-43gm-9rr3-cx7g",
+    "product_page_url": "https://github.com/advisories/GHSA-43gm-9rr3-cx7g",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-rghg-q7wp-9767",
+    "title": "MONAI vulnerable to OS command injection",
+    "severity": "HIGH",
+    "ecosystem": "pip",
+    "affected_package": "MONAI",
+    "published_at": "2026-06-11T12:41:48Z",
+    "advisory_url": "https://github.com/advisories/GHSA-rghg-q7wp-9767",
+    "product_page_url": "https://github.com/advisories/GHSA-rghg-q7wp-9767",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-6c8m-q6g9-vrw3",
+    "title": "Lemur: Authenticated low-privilege users can read plaintext destination credentials (SFTP password / private-key passphrase) via the destinations API",
+    "severity": "HIGH",
+    "ecosystem": "pip",
+    "affected_package": "lemur",
+    "published_at": "2026-07-06T18:47:52Z",
+    "advisory_url": "https://github.com/advisories/GHSA-6c8m-q6g9-vrw3",
+    "product_page_url": "https://github.com/advisories/GHSA-6c8m-q6g9-vrw3",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-59xm-4m8c-g3xj",
+    "title": "MineAdmin Vulnerable to Path Traversal via Unsanitized identifier in Plugin Install/Uninstall",
+    "severity": "HIGH",
+    "ecosystem": "Composer",
+    "affected_package": "mineadmin/mineadmin",
+    "published_at": "2026-06-11T12:48:43Z",
+    "advisory_url": "https://github.com/advisories/GHSA-59xm-4m8c-g3xj",
+    "product_page_url": "https://github.com/advisories/GHSA-59xm-4m8c-g3xj",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-qxq5-qhx6-94qw",
+    "title": "Incomplete Fix in MONAI: algo_from_pickle() pickle.loads() RCE still present in v1.5.2 despite GHSA-89gg-p5r5-q6r4 claiming patch",
+    "severity": "HIGH",
+    "ecosystem": "pip",
+    "affected_package": "monai",
+    "published_at": "2026-06-11T12:40:14Z",
+    "advisory_url": "https://github.com/advisories/GHSA-qxq5-qhx6-94qw",
+    "product_page_url": "https://github.com/advisories/GHSA-qxq5-qhx6-94qw",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-7gww-x7fh-jf9j",
+    "title": "LibreNMS: SSRF-driven stored XSS via Oxidized API response fields in device showconfig page",
+    "severity": "HIGH",
+    "ecosystem": "Composer",
+    "affected_package": "librenms/librenms",
+    "published_at": "2026-08-04T00:07:17Z",
+    "advisory_url": "https://github.com/advisories/GHSA-7gww-x7fh-jf9j",
+    "product_page_url": "https://github.com/advisories/GHSA-7gww-x7fh-jf9j",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-hfg8-hc9c-6c3h",
+    "title": "moby/go-archive: Crafted tar archive can write outside the extraction directory",
+    "severity": "HIGH",
+    "ecosystem": "Go",
+    "affected_package": "github.com/moby/go-archive",
+    "published_at": "2026-08-11T13:35:42Z",
+    "advisory_url": "https://github.com/advisories/GHSA-hfg8-hc9c-6c3h",
+    "product_page_url": "https://github.com/advisories/GHSA-hfg8-hc9c-6c3h",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-hhrp-gw25-jr43",
+    "title": "Ray: Arbitrary code execution via ray.data.read_webdataset default decoder: pickle.loads(value) and torch.load(weights_only=False)",
+    "severity": "HIGH",
+    "ecosystem": "pip",
+    "affected_package": "ray",
+    "published_at": "2026-07-01T16:39:01Z",
+    "advisory_url": "https://github.com/advisories/GHSA-hhrp-gw25-jr43",
+    "product_page_url": "https://github.com/advisories/GHSA-hhrp-gw25-jr43",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-7cj5-v4pp-v632",
+    "title": "LibreNMS: Stored XSS via graph_descr admin config settings echoed without escaping to all authenticated users",
+    "severity": "MODERATE",
+    "ecosystem": "Composer",
+    "affected_package": "librenms/librenms",
+    "published_at": "2026-08-04T00:05:23Z",
+    "advisory_url": "https://github.com/advisories/GHSA-7cj5-v4pp-v632",
+    "product_page_url": "https://github.com/advisories/GHSA-7cj5-v4pp-v632",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-xpr4-8vp6-c87j",
+    "title": "Froxlor has CSRF Vulnerability in AJAX Endpoint — Missing Cross-Site Request Forgery Protection",
+    "severity": "MODERATE",
+    "ecosystem": "Composer",
+    "affected_package": "froxlor/froxlor",
+    "published_at": "2026-06-29T06:43:02Z",
+    "advisory_url": "https://github.com/advisories/GHSA-xpr4-8vp6-c87j",
+    "product_page_url": "https://github.com/advisories/GHSA-xpr4-8vp6-c87j",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-vjf8-9fx6-mv6x",
+    "title": "Triton VM Soundness Vulnerability due to Missing Constraint",
+    "severity": "MODERATE",
+    "ecosystem": "Rust",
+    "affected_package": "triton-vm",
+    "published_at": "2026-08-18T20:22:21Z",
+    "advisory_url": "https://github.com/advisories/GHSA-vjf8-9fx6-mv6x",
+    "product_page_url": "https://github.com/advisories/GHSA-vjf8-9fx6-mv6x",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-4h97-p9wq-chqj",
+    "title": "Lemur: Missing authorization check on POST /certificates/<id>/export for plugins with requires_key = False",
+    "severity": "MODERATE",
+    "ecosystem": "pip",
+    "affected_package": "lemur",
+    "published_at": "2026-07-06T19:20:16Z",
+    "advisory_url": "https://github.com/advisories/GHSA-4h97-p9wq-chqj",
+    "product_page_url": "https://github.com/advisories/GHSA-4h97-p9wq-chqj",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-g7p5-89mh-248h",
+    "title": "Lemur: Sub-CA creation never checks `AuthorityPermission` on the parent authority",
+    "severity": "MODERATE",
+    "ecosystem": "pip",
+    "affected_package": "lemur",
+    "published_at": "2026-07-06T18:57:10Z",
+    "advisory_url": "https://github.com/advisories/GHSA-g7p5-89mh-248h",
+    "product_page_url": "https://github.com/advisories/GHSA-g7p5-89mh-248h",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-jf24-8g2h-2wg7",
+    "title": "LibreNMS Vulnerable to Remote Code Execution via AboutController",
+    "severity": "MODERATE",
+    "ecosystem": "Composer",
+    "affected_package": "librenms/librenms",
+    "published_at": "2026-08-04T00:01:59Z",
+    "advisory_url": "https://github.com/advisories/GHSA-jf24-8g2h-2wg7",
+    "product_page_url": "https://github.com/advisories/GHSA-jf24-8g2h-2wg7",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-5rw4-4665-cvwf",
+    "title": "Froxlor DomainZones.add allows DNS zone-file RR injection via record/type fields",
+    "severity": "MODERATE",
+    "ecosystem": "Composer",
+    "affected_package": "froxlor/froxlor",
+    "published_at": "2026-06-29T06:42:00Z",
+    "advisory_url": "https://github.com/advisories/GHSA-5rw4-4665-cvwf",
+    "product_page_url": "https://github.com/advisories/GHSA-5rw4-4665-cvwf",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-m5pq-69xg-vcq3",
+    "title": "devpi-server may leak database contents",
+    "severity": "MODERATE",
+    "ecosystem": "pip",
+    "affected_package": "devpi-server",
+    "published_at": "2026-06-11T14:01:12Z",
+    "advisory_url": "https://github.com/advisories/GHSA-m5pq-69xg-vcq3",
+    "product_page_url": "https://github.com/advisories/GHSA-m5pq-69xg-vcq3",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-f3qq-49m6-rw8f",
+    "title": "Lemur: SSRF protection in certificate revocation checking bypassable via HTTP redirects and DNS rebinding (incomplete fix for GHSA-54vg-pfh7-jq95)",
+    "severity": "MODERATE",
+    "ecosystem": "pip",
+    "affected_package": "lemur",
+    "published_at": "2026-07-06T18:28:09Z",
+    "advisory_url": "https://github.com/advisories/GHSA-f3qq-49m6-rw8f",
+    "product_page_url": "https://github.com/advisories/GHSA-f3qq-49m6-rw8f",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-wqjv-9729-c5q2",
+    "title": "SvelteKit: Big remote form function payloads can cause Node process to crash",
+    "severity": "MODERATE",
+    "ecosystem": "npm",
+    "affected_package": "@sveltejs/kit",
+    "published_at": "2026-07-02T21:44:05Z",
+    "advisory_url": "https://github.com/advisories/GHSA-wqjv-9729-c5q2",
+    "product_page_url": "https://github.com/advisories/GHSA-wqjv-9729-c5q2",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-89cp-7p28-jffg",
+    "title": "Kirby: Access to files of top-level drafts is not protected by permissions",
+    "severity": "MODERATE",
+    "ecosystem": "Composer",
+    "affected_package": "getkirby/cms",
+    "published_at": "2026-06-17T10:32:41Z",
+    "advisory_url": "https://github.com/advisories/GHSA-89cp-7p28-jffg",
+    "product_page_url": "https://github.com/advisories/GHSA-89cp-7p28-jffg",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-m54h-vhf9-3w3m",
+    "title": "BBOT: Arbitrary File Write in postman_download Module",
+    "severity": "MODERATE",
+    "ecosystem": "pip",
+    "affected_package": "bbot",
+    "published_at": "2026-06-17T22:16:49Z",
+    "advisory_url": "https://github.com/advisories/GHSA-m54h-vhf9-3w3m",
+    "product_page_url": "https://github.com/advisories/GHSA-m54h-vhf9-3w3m",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-hwf3-r46v-5ggx",
+    "title": "ImageMagick: Information Disclosure when printing profiles with debug enabled",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:10:20Z",
+    "advisory_url": "https://github.com/advisories/GHSA-hwf3-r46v-5ggx",
+    "product_page_url": "https://github.com/advisories/GHSA-hwf3-r46v-5ggx",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-h5r4-w88w-7ccr",
+    "title": "ImageMagick: Memory Leak in TIFF encoder when invalid tiff:tile-geometry is specified",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:13:44Z",
+    "advisory_url": "https://github.com/advisories/GHSA-h5r4-w88w-7ccr",
+    "product_page_url": "https://github.com/advisories/GHSA-h5r4-w88w-7ccr",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-p893-rvq9-2xf9",
+    "title": "ONNX: Heap-Buffer-Overflow READ in Gemm Version Converter Adapter via Undersized Input Shape",
+    "severity": "LOW",
+    "ecosystem": "pip",
+    "affected_package": "onnx",
+    "published_at": "2026-07-01T18:27:23Z",
+    "advisory_url": "https://github.com/advisories/GHSA-p893-rvq9-2xf9",
+    "product_page_url": "https://github.com/advisories/GHSA-p893-rvq9-2xf9",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-jfq9-q63x-rc63",
+    "title": "ImageMagick: Memory Leak in TIFF encoder when an allocation fails",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:12:45Z",
+    "advisory_url": "https://github.com/advisories/GHSA-jfq9-q63x-rc63",
+    "product_page_url": "https://github.com/advisories/GHSA-jfq9-q63x-rc63",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-r628-69v2-2f9c",
+    "title": "ImageMagick: Memory Leak in MIFF encoder when allocaton fails",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:13:11Z",
+    "advisory_url": "https://github.com/advisories/GHSA-r628-69v2-2f9c",
+    "product_page_url": "https://github.com/advisories/GHSA-r628-69v2-2f9c",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-h58x-r7f7-rh84",
+    "title": "ImageMagick: Memory Leak in ICON decoder when allocation fails",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:13:34Z",
+    "advisory_url": "https://github.com/advisories/GHSA-h58x-r7f7-rh84",
+    "product_page_url": "https://github.com/advisories/GHSA-h58x-r7f7-rh84",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-j8rh-v2r8-v94x",
+    "title": "ImageMagick: Memory Leak in hough lines operation when an operation fails",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:10:56Z",
+    "advisory_url": "https://github.com/advisories/GHSA-j8rh-v2r8-v94x",
+    "product_page_url": "https://github.com/advisories/GHSA-j8rh-v2r8-v94x",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-76q6-2p6h-xjqr",
+    "title": "ImageMagick: Heap Buffer Over-Write in X11 import with crafted window title",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T16:51:54Z",
+    "advisory_url": "https://github.com/advisories/GHSA-76q6-2p6h-xjqr",
+    "product_page_url": "https://github.com/advisories/GHSA-76q6-2p6h-xjqr",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-7c7m-fpjw-gwcq",
+    "title": "ImageMagick: Memory Leak in color transformation to log colorspace when operation fails",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:10:44Z",
+    "advisory_url": "https://github.com/advisories/GHSA-7c7m-fpjw-gwcq",
+    "product_page_url": "https://github.com/advisories/GHSA-7c7m-fpjw-gwcq",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-m596-67p7-69wh",
+    "title": "ImageMagick: Memory leak in VIFF encoder when allocation fails",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:13:22Z",
+    "advisory_url": "https://github.com/advisories/GHSA-m596-67p7-69wh",
+    "product_page_url": "https://github.com/advisories/GHSA-m596-67p7-69wh",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-6vxp-gfwf-hcr9",
+    "title": "ImageMagick: Memory Leak in TIFF encoder when a temporary file could not be created.",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:10:35Z",
+    "advisory_url": "https://github.com/advisories/GHSA-6vxp-gfwf-hcr9",
+    "product_page_url": "https://github.com/advisories/GHSA-6vxp-gfwf-hcr9",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-qvxh-prvr-85w2",
+    "title": "ImageMagick: Use-After-Free in FormatMagickCaption when memory allocation fails",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:09:56Z",
+    "advisory_url": "https://github.com/advisories/GHSA-qvxh-prvr-85w2",
+    "product_page_url": "https://github.com/advisories/GHSA-qvxh-prvr-85w2",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-j5g9-f88f-gfj3",
+    "title": "httplib2: Decompression Bomb Denial of Service via Unbounded gzip/deflate Response Handling",
+    "severity": "HIGH",
+    "ecosystem": "pip",
+    "affected_package": "httplib2",
+    "published_at": "2026-06-26T10:27:26Z",
+    "advisory_url": "https://github.com/advisories/GHSA-j5g9-f88f-gfj3",
+    "product_page_url": "https://github.com/advisories/GHSA-j5g9-f88f-gfj3",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  },
+  {
+    "ghsa_id": "GHSA-99w9-hv66-rfv7",
+    "title": "ImageMagick: Memory Leak in JNG encoder when a blob could not be opened",
+    "severity": "LOW",
+    "ecosystem": "NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet NuGet",
+    "affected_package": "Magick.NET-Q16-AnyCPU Magick.NET-Q16-HDRI-AnyCPU Magick.NET-Q16-HDRI-OpenMP-arm64 Magick.NET-Q16-HDRI-arm64 Magick.NET-Q16-HDRI-x64 Magick.NET-Q16-HDRI-x86 Magick.NET-Q16-OpenMP-arm64 Magick.NET-Q16-OpenMP-x64 Magick.NET-Q16-arm64 Magick.NET-Q16-x64 Magick.NET-Q16-x86 Magick.NET-Q8-AnyCPU Magick.NET-Q8-OpenMP-arm64 Magick.NET-Q8-OpenMP-x64 Magick.NET-Q8-arm64 Magick.NET-Q8-x64 Magick.NET-Q8-x86",
+    "published_at": "2026-06-26T10:12:19Z",
+    "advisory_url": "https://github.com/advisories/GHSA-99w9-hv66-rfv7",
+    "product_page_url": "https://github.com/advisories/GHSA-99w9-hv66-rfv7",
+    "input": {
+      "url": "https://github.com/advisories"
+    }
+  }
+]
