@@ -24,9 +24,12 @@ st.set_page_config(
 )
 
 # Dark cybersecurity palette
-BG_COLOR = "#0e1117"
-CARD_BG = "#1a1f2e"
+BG_COLOR = "#0b0f17"
+CARD_BG = "#141a26"
+CARD_BORDER = "#232b3b"
 ACCENT = "#00d4ff"
+ACCENT_DIM = "#0e7490"
+TEXT_MUTED = "#8b949e"
 SEVERITY_COLORS = {
     "CRITICAL": "#ff4b4b",
     "HIGH": "#ff8c42",
@@ -40,35 +43,148 @@ st.markdown(
     f"""
     <style>
     .stApp {{ background-color: {BG_COLOR}; }}
+
+    /* Global typography */
+    html, body, [class*="css"] {{
+        font-family: 'Segoe UI', 'Inter', -apple-system, sans-serif;
+    }}
+
+    /* Header */
+    .app-header {{
+        background: linear-gradient(135deg, #0e7490 0%, #0b0f17 60%);
+        border: 1px solid {CARD_BORDER};
+        border-radius: 12px;
+        padding: 22px 28px;
+        margin-bottom: 20px;
+    }}
+    .app-header .title {{
+        color: #ffffff;
+        font-size: 1.9rem;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }}
+    .app-header .subtitle {{
+        color: {TEXT_MUTED};
+        font-size: 0.95rem;
+        margin-top: 4px;
+    }}
+    .app-header .badge {{
+        display: inline-block;
+        background: {CARD_BG};
+        border: 1px solid {ACCENT};
+        color: {ACCENT};
+        border-radius: 20px;
+        padding: 3px 12px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        margin-top: 10px;
+    }}
+
+    /* Metric cards */
     .metric-card {{
         background: {CARD_BG};
+        border: 1px solid {CARD_BORDER};
         border-radius: 10px;
         padding: 16px 20px;
         border-left: 4px solid {ACCENT};
         margin-bottom: 8px;
+        transition: border-color 0.2s ease;
     }}
-    .metric-card .label {{ color: #8b949e; font-size: 0.85rem; }}
-    .metric-card .value {{ color: #ffffff; font-size: 1.8rem; font-weight: 700; }}
-    .metric-card .sub {{ color: #8b949e; font-size: 0.75rem; }}
+    .metric-card:hover {{ border-color: {ACCENT_DIM}; }}
+    .metric-card .label {{ color: {TEXT_MUTED}; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.6px; }}
+    .metric-card .value {{ color: #ffffff; font-size: 1.9rem; font-weight: 800; }}
+    .metric-card .sub {{ color: {TEXT_MUTED}; font-size: 0.75rem; }}
+
+    /* Section titles */
     .section-title {{
         color: {ACCENT};
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-top: 24px;
-        margin-bottom: 8px;
-        border-bottom: 1px solid #30363d;
-        padding-bottom: 6px;
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-top: 28px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid {CARD_BORDER};
+        padding-bottom: 8px;
+        letter-spacing: 0.4px;
     }}
+
+    /* Patch Now cards */
     .patch-now-card {{
-        background: {CARD_BG};
+        background: linear-gradient(135deg, #2a1215 0%, {CARD_BG} 70%);
+        border: 1px solid #5c1a1a;
         border-radius: 10px;
-        padding: 12px 16px;
-        border-left: 4px solid #ff4b4b;
-        margin-bottom: 8px;
+        padding: 14px 18px;
+        border-left: 5px solid #ff4b4b;
+        margin-bottom: 10px;
     }}
-    .patch-now-card .id {{ color: #ff4b4b; font-weight: 700; font-size: 0.9rem; }}
-    .patch-now-card .title {{ color: #ffffff; font-size: 0.95rem; }}
-    .patch-now-card .meta {{ color: #8b949e; font-size: 0.8rem; }}
+    .patch-now-card .id {{ color: #ff6b6b; font-weight: 800; font-size: 0.9rem; letter-spacing: 0.4px; }}
+    .patch-now-card .title {{ color: #ffffff; font-size: 0.95rem; font-weight: 600; }}
+    .patch-now-card .meta {{ color: {TEXT_MUTED}; font-size: 0.8rem; }}
+
+    /* Severity badges */
+    .sev-badge {{
+        display: inline-block;
+        border-radius: 4px;
+        padding: 2px 8px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }}
+
+    /* Health status pill */
+    .health-pill {{
+        display: inline-block;
+        border-radius: 20px;
+        padding: 4px 14px;
+        font-size: 0.85rem;
+        font-weight: 700;
+    }}
+
+    /* Demo flow cards */
+    .demo-card {{
+        background: {CARD_BG};
+        border: 1px solid {CARD_BORDER};
+        border-radius: 10px;
+        padding: 14px 18px;
+        text-align: center;
+    }}
+    .demo-card .step {{ color: {TEXT_MUTED}; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.6px; }}
+    .demo-card .status {{ font-size: 1.1rem; font-weight: 800; margin-top: 6px; }}
+    .demo-arrow {{
+        color: {ACCENT};
+        font-size: 1.6rem;
+        text-align: center;
+        padding-top: 24px;
+    }}
+
+    /* Sidebar */
+    [data-testid="stSidebar"] {{
+        background-color: #0d1117;
+        border-right: 1px solid {CARD_BORDER};
+    }}
+    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] h3 {{
+        color: {ACCENT};
+    }}
+
+    /* Dataframe */
+    [data-testid="stDataFrame"] {{
+        border: 1px solid {CARD_BORDER};
+        border-radius: 8px;
+        overflow: hidden;
+    }}
+
+    /* Buttons */
+    .stButton > button {{
+        background: {CARD_BG};
+        border: 1px solid {ACCENT};
+        color: {ACCENT};
+        border-radius: 8px;
+        font-weight: 600;
+    }}
+    .stButton > button:hover {{
+        background: {ACCENT_DIM};
+        color: #ffffff;
+        border-color: {ACCENT};
+    }}
     </style>
     """,
     unsafe_allow_html=True,
@@ -106,10 +222,18 @@ advisories, severity_dist, latest_run, scraper_history, kev_count = load_data()
 # ---------------------------------------------------------------------------
 # Header
 # ---------------------------------------------------------------------------
-st.title("🛡️ Security Advisory Tracker")
-st.caption(
-    "Monitors public security advisories from GitHub, flags actively exploited "
-    "vulnerabilities using CISA KEV data, and surfaces them for fast triage."
+st.markdown(
+    f"""
+    <div class="app-header">
+        <div class="title">🛡️ Security Advisory Tracker</div>
+        <div class="subtitle">
+            Monitors public security advisories from GitHub, flags actively exploited
+            vulnerabilities using CISA KEV data, and surfaces them for fast triage.
+        </div>
+        <span class="badge">SOC DASHBOARD · LIVE MONITORING</span>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 
 # ---------------------------------------------------------------------------
@@ -202,7 +326,7 @@ else:
         color = SEVERITY_COLORS.get(sev, "#8b8b8b")
         st.markdown(
             f'<div class="patch-now-card">'
-            f'<div class="id">{row["cve_id"]} · <span style="color:{color}">{sev}</span></div>'
+            f'<div class="id">{row["cve_id"]} · <span class="sev-badge" style="background:{color}22;color:{color}">{sev}</span></div>'
             f'<div class="title">{row["title"]}</div>'
             f'<div class="meta">{row["ecosystem"] or "Unknown"} · {row["published_at"] or "N/A"} · '
             f'<a href="{row["advisory_url"]}" target="_blank" style="color:{ACCENT}">View advisory ↗</a></div>'
@@ -291,17 +415,33 @@ else:
 
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
-        st.metric("Last Run", run["timestamp"][:19].replace("T", " "))
+        st.markdown(
+            f'<div class="metric-card"><div class="label">Last Run</div>'
+            f'<div class="value" style="font-size:1.1rem;">{run["timestamp"][:19].replace("T", " ")}</div></div>',
+            unsafe_allow_html=True,
+        )
     with col2:
-        st.metric("Records Fetched", f"{run['records_fetched']:,}")
+        st.markdown(
+            f'<div class="metric-card"><div class="label">Records Fetched</div>'
+            f'<div class="value" style="font-size:1.1rem;">{run["records_fetched"]:,}</div></div>',
+            unsafe_allow_html=True,
+        )
     with col3:
-        st.metric("Fallback Count", run["fallback_count"])
+        st.markdown(
+            f'<div class="metric-card"><div class="label">Fallback Count</div>'
+            f'<div class="value" style="font-size:1.1rem;">{run["fallback_count"]}</div></div>',
+            unsafe_allow_html=True,
+        )
     with col4:
-        st.metric("Failure Count", run["failure_count"])
+        st.markdown(
+            f'<div class="metric-card"><div class="label">Failure Count</div>'
+            f'<div class="value" style="font-size:1.1rem;">{run["failure_count"]}</div></div>',
+            unsafe_allow_html=True,
+        )
     with col5:
         st.markdown(
             f'<div class="metric-card"><div class="label">Health</div>'
-            f'<div class="value" style="color:{health_color}; font-size:1.2rem;">{health}</div></div>',
+            f'<div class="value" style="color:{health_color}; font-size:1.1rem;">{health}</div></div>',
             unsafe_allow_html=True,
         )
 
@@ -348,23 +488,28 @@ demo = run_scraper.run_self_healing_demo()
 if not demo["success"]:
     st.error(demo["message"])
 else:
-    col1, col2, col3 = st.columns(3)
-    with col1:
+    # Visual flow: Primary → Failed → Fallback → Recovered
+    flow_cols = st.columns(5)
+    with flow_cols[0]:
         st.markdown(
-            f'<div class="metric-card"><div class="label">Primary Extraction</div>'
-            f'<div class="value" style="color:#ff4b4b; font-size:1.2rem;">❌ {demo["primary_status"]}</div></div>',
+            f'<div class="demo-card"><div class="step">Primary</div>'
+            f'<div class="status" style="color:#ff4b4b;">❌ FAILED</div></div>',
             unsafe_allow_html=True,
         )
-    with col2:
+    with flow_cols[1]:
+        st.markdown('<div class="demo-arrow">→</div>', unsafe_allow_html=True)
+    with flow_cols[2]:
         st.markdown(
-            f'<div class="metric-card"><div class="label">Fallback Extraction</div>'
-            f'<div class="value" style="color:#4ecdc4; font-size:1.2rem;">✅ {demo["fallback_status"]}</div></div>',
+            f'<div class="demo-card"><div class="step">Fallback</div>'
+            f'<div class="status" style="color:#4ecdc4;">✅ SUCCESS</div></div>',
             unsafe_allow_html=True,
         )
-    with col3:
+    with flow_cols[3]:
+        st.markdown('<div class="demo-arrow">→</div>', unsafe_allow_html=True)
+    with flow_cols[4]:
         st.markdown(
-            f'<div class="metric-card"><div class="label">Record Recovered</div>'
-            f'<div class="value" style="color:#4ecdc4; font-size:1.2rem;">✅ SUCCESS</div></div>',
+            f'<div class="demo-card"><div class="step">Recovered</div>'
+            f'<div class="status" style="color:#4ecdc4;">✅ SUCCESS</div></div>',
             unsafe_allow_html=True,
         )
 
