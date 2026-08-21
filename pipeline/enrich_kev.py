@@ -8,13 +8,18 @@ and marks normalized advisory records as actively exploited
 
 import json
 import os
+from pathlib import Path
+
 import requests
 
 # Official public CISA KEV JSON feed (no authentication required).
 KEV_URL = "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
 
+# Project root (parent of the pipeline/ directory).
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
 # Local cache file so repeated runs don't re-download the catalog.
-KEV_CACHE_PATH = "data/kev_cache.json"
+KEV_CACHE_PATH = PROJECT_ROOT / "data" / "kev_cache.json"
 
 # Reasonable timeout for the HTTP request (seconds).
 REQUEST_TIMEOUT = 15

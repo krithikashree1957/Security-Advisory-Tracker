@@ -5,9 +5,14 @@ Defines what the Python application expects from the
 Bright Data Scraper Studio collector (GitHub Security Advisories).
 """
 
-# Paths to scraper output files.
-FIXTURE_PATH = "data/sample_scraper_output.json"      # dev fixture (~50 records)
-BRIGHT_DATA_OUTPUT_PATH = "data/brightdata_output.json"  # real output (local only, gitignored)
+from pathlib import Path
+
+# Project root (parent of the scraper/ directory).
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+# Paths to scraper output files (project-relative, deployment-safe).
+FIXTURE_PATH = PROJECT_ROOT / "data" / "sample_scraper_output.json"  # dev fixture (~50 records)
+BRIGHT_DATA_OUTPUT_PATH = PROJECT_ROOT / "data" / "brightdata_output.json"  # real output (local only, gitignored)
 
 # Recognized severity values (GitHub Advisories uses these).
 SEVERITY_LEVELS = ["CRITICAL", "HIGH", "MODERATE", "LOW", "UNKNOWN"]

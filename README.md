@@ -171,7 +171,7 @@ security-advisory-tracker/
 
 ---
 
-## 11. Installation
+## 11. Run Locally
 
 1. **Clone the repository:**
    ```bash
@@ -190,10 +190,19 @@ security-advisory-tracker/
    pip install -r requirements.txt
    ```
 
-4. **Set up environment variables:**
+4. **Run the dashboard:**
    ```bash
-   cp .env.example .env
-   # Edit .env and add your Bright Data API key
+   streamlit run app.py
+   ```
+
+   The dashboard opens at `http://localhost:8501`.
+
+   **No Bright Data API key is required to run the dashboard.** If `data/advisories.db` does not exist, the app automatically bootstraps from the committed fixture (`data/sample_scraper_output.json`, ~50 real advisories). If a populated database already exists (e.g. your local 9,998-record dataset), it is used as-is and never overwritten.
+
+   To run the full pipeline manually (fixture or live Bright Data output):
+   ```bash
+   python -m pipeline.run_pipeline --mode fixture
+   python -m pipeline.run_pipeline --mode live   # requires data/brightdata_output.json
    ```
 
 ---
@@ -311,27 +320,19 @@ If I were to add an API layer later, I've designed hypothetical endpoints in [`d
 
 ---
 
-## 18. Deployment
+## 18. Deploy to Streamlit Community Cloud
 
-### Local Execution (Recommended for Demo)
+1. **Push your code to GitHub** (ensure `data/advisories.db` and `data/brightdata_output.json` are gitignored — they are).
+2. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub.
+3. Click **"New app"**, select your repository, set the main file to `app.py`, and deploy.
+4. No secrets or API keys are required.
 
-```bash
-streamlit run app.py
-```
-
-**Advantages:**
-- Full control over environment
-- No ephemeral storage issues
-- Easier to demo scraper fallback behavior live
-
-### Streamlit Community Cloud (Optional)
-
-1. Push your code to GitHub
-2. Go to [share.streamlit.io](https://share.streamlit.io)
-3. Connect your repository
-4. Deploy
-
-**Note:** On Streamlit Cloud, the SQLite database is ephemeral. The pipeline will re-run on every app startup to repopulate data.
+**How the deployed demo works:**
+- A fresh deployment has no local SQLite database.
+- On first load, `app.py` detects the missing database and automatically bootstraps it from the committed fixture (`data/sample_scraper_output.json`, ~50 real advisories).
+- The dashboard then works exactly like the local version — filters, search, Patch Now, Scraper Health, and Self-Healing Demo all function.
+- No `BRIGHT_DATA_API_KEY` is needed; the deployed demo runs entirely from the committed fixture data.
+- The SQLite database is ephemeral on Streamlit Cloud and re-bootstraps on each cold start.
 
 ---
 

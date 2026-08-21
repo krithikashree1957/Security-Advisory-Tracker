@@ -7,9 +7,13 @@ the first time init_db() runs — no manual setup needed.
 """
 
 import sqlite3
+from pathlib import Path
 
-# Default path to the SQLite database file.
-DEFAULT_DB_PATH = "data/advisories.db"
+# Project root (parent of the data/ directory).
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+# Default path to the SQLite database file (project-relative, deployment-safe).
+DEFAULT_DB_PATH = PROJECT_ROOT / "data" / "advisories.db"
 
 
 def get_connection(db_path=DEFAULT_DB_PATH):

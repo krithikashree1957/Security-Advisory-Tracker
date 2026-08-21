@@ -284,13 +284,39 @@ st.markdown(
 
 
 # ---------------------------------------------------------------------------
-# Load data (graceful if DB missing/empty)
+# Load data (graceful if DB missing/empty — bootstrap from fixture)
 # ---------------------------------------------------------------------------
+def bootstrap_from_fixture():
+    """Initialize the DB schema and populate from the committed fixture.
+
+    Only runs when the database is missing or empty. Never overwrites
+    an existing populated database.
+    """
+    from pipeline import run_pipeline
+
+    run_pipeline.run_pipeline(mode="fixture")
+
+
 @st.cache_data(ttl=60)
 def load_data():
-    """Load all dashboard data from SQLite."""
+    """Load all dashboard data from SQLite.
+
+    If the database is missing or empty, bootstraps from the committed
+    fixture (data/sample_scraper_output.json) so a fresh deployment works.
+    """
     if not os.path.exists(db.DEFAULT_DB_PATH):
-        return None, None, None, None, None
+        bootstrap_from_fixture()
+    else:
+        # Check if the DB is empty (e.g. schema exists but no rows).
+        conn = db.get_connection()
+        try:
+            count = conn.execute("SELECT COUNT(*) FROM advisories").fetchone()[0]
+        except Exception:
+            count = 0
+        finally:
+            conn.close()
+        if count == 0:
+            bootstrap_from_fixture()
 
     conn = db.get_connection()
     try:
