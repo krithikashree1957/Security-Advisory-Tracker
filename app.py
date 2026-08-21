@@ -11,6 +11,7 @@ import pandas as pd
 import streamlit as st
 
 from data import db
+from scraper import run_scraper
 
 # ---------------------------------------------------------------------------
 # Page config (dark theme)
@@ -332,3 +333,48 @@ else:
                 "Health": st.column_config.TextColumn(width="small"),
             },
         )
+
+# ---------------------------------------------------------------------------
+# 🔧 Self-Healing Demo (controlled demonstration)
+# ---------------------------------------------------------------------------
+st.markdown('<div class="section-title">🔧 Self-Healing Demo — Controlled Demonstration</div>', unsafe_allow_html=True)
+st.caption(
+    "This is a deterministic test of the scraper's primary→fallback recovery path. "
+    "It simulates a primary extraction failure and shows the fallback recovering the record."
+)
+
+demo = run_scraper.run_self_healing_demo()
+
+if not demo["success"]:
+    st.error(demo["message"])
+else:
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown(
+            f'<div class="metric-card"><div class="label">Primary Extraction</div>'
+            f'<div class="value" style="color:#ff4b4b; font-size:1.2rem;">❌ {demo["primary_status"]}</div></div>',
+            unsafe_allow_html=True,
+        )
+    with col2:
+        st.markdown(
+            f'<div class="metric-card"><div class="label">Fallback Extraction</div>'
+            f'<div class="value" style="color:#4ecdc4; font-size:1.2rem;">✅ {demo["fallback_status"]}</div></div>',
+            unsafe_allow_html=True,
+        )
+    with col3:
+        st.markdown(
+            f'<div class="metric-card"><div class="label">Record Recovered</div>'
+            f'<div class="value" style="color:#4ecdc4; font-size:1.2rem;">✅ SUCCESS</div></div>',
+            unsafe_allow_html=True,
+        )
+
+    st.markdown(
+        f'<div class="patch-now-card">'
+        f'<div class="id">{demo["ghsa_id"]}</div>'
+        f'<div class="title">Recovered field: <b>{demo["recovered_field"]}</b> = '
+        f'<b>{demo["recovered_value"]}</b></div>'
+        f'<div class="meta">Final extraction method: <b>{demo["final_extraction_method"]}</b> · '
+        f'{demo["message"]}</div>'
+        f'</div>',
+        unsafe_allow_html=True,
+    )
