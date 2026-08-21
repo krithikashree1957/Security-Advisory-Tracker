@@ -118,6 +118,37 @@ def get_all_advisories(conn):
     ).fetchall()
 
 
+def get_filtered_advisories(conn, severity=None, ecosystem=None, in_cisa_kev=None, search=None):
+    """
+    Return advisories filtered by optional criteria.
+
+    All filters are optional; only the provided ones are applied.
+    Uses parameterized SQL — no string concatenation of user input.
+    """
+    query = "SELECT * FROM advisories WHERE 1=1"
+    params = []
+
+    if severity:
+        query += " AND severity = ?"
+        params.append(severity)
+
+    if ecosystem:
+        query += " AND ecosystem = ?"
+        params.append(ecosystem)
+
+    if in_cisa_kev is not None:
+        query += " AND in_cisa_kev = ?"
+        params.append(1 if in_cisa_kev else 0)
+
+    if search:
+        query += " AND (cve_id LIKE ? OR title LIKE ? OR affected_package LIKE ?)"
+        like = f"%{search}%"
+        params.extend([like, like, like])
+
+    query += " ORDER BY created_at DESC"
+    return conn.execute(query, params).fetchall()
+
+
 def get_kev_advisories(conn):
     """Return only actively exploited advisories (for the Patch Now section).
 
@@ -161,3 +192,11 @@ def get_latest_scraper_run(conn):
     return conn.execute(
         "SELECT * FROM scraper_runs ORDER BY timestamp DESC LIMIT 1"
     ).fetchone()
+
+
+def get_scraper_runs(conn, limit=20):
+    """Return recent scraper runs, newest first (for the history table)."""
+    return conn.execute(
+        "SELECT * FROM scraper_runs ORDER BY timestamp DESC LIMIT ?",
+        (limit,),
+    ).fetchall()
