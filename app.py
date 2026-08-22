@@ -426,7 +426,7 @@ st.markdown(
         <a class="nav-pill" href="#section-filters">🔎 Filters</a>
         <a class="nav-pill" href="#section-advisories">📋 Advisories</a>
         <a class="nav-pill" href="#section-health">🩺 Scraper Health</a>
-        <a class="nav-pill" href="#section-demo">🔧 Self-Healing</a>
+        <a class="nav-pill" href="#section-demo">🔄 Fallback Demo</a>
     </div>
     """,
     unsafe_allow_html=True,
@@ -699,15 +699,23 @@ else:
         )
 
 # ---------------------------------------------------------------------------
-# 🔧 Self-Healing Demo (button-triggered, controlled demonstration)
+# 🔄 Application Fallback Recovery (button-triggered, controlled demonstration)
 # ---------------------------------------------------------------------------
 st.markdown(
-    '<div id="section-demo" class="section-title"><span class="step-num">05</span>🔧 Self-Healing Demo — Controlled Demonstration</div>',
+    '<div id="section-demo" class="section-title"><span class="step-num">05</span>🔄 Application Fallback Recovery — Controlled Demonstration</div>',
     unsafe_allow_html=True,
 )
-st.caption("Demonstrates recovery when primary extraction fails.")
+st.caption(
+    "This controlled demonstration shows application-level recovery when a required advisory "
+    "field is missing. Bright Data Scraper Studio provides the scraper-level Self-Healing used "
+    "by the collector."
+)
+st.caption(
+    "Note: This is an application-level fallback demonstration. Scraper-level Self-Healing is "
+    "handled by Bright Data Scraper Studio."
+)
 
-if st.button("🔧 Run Self-Healing Demo"):
+if st.button("🔄 Run Fallback Recovery Demo"):
     demo = run_scraper.run_self_healing_demo()
 
     if not demo["success"]:

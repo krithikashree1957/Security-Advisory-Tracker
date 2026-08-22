@@ -1,188 +1,246 @@
-# Security Advisory Tracker — Scrape-Verse Hackathon
+# 🛡️ Security Advisory Tracker
 
-**Project:** Security Advisory Tracker — Scrape-Verse Hackathon (Solo Project)  
-**Author:** KRITHIKA SHREE K  
-**GitHub:** [@krithikashree1957](https://github.com/krithikashree1957)  
-**Hackathon:** Into the Scrape-Verse (WeMakeDevs × Bright Data)
+A security-advisory monitoring system that collects GitHub Security Advisories with a custom Bright Data scraper, normalizes and deduplicates them, flags actively exploited vulnerabilities using the CISA KEV catalog, and surfaces everything in a searchable Streamlit dashboard.
 
----
+**Hackathon:** Scrapeverse Hackathon by WeMakeDevs × Bright Data
 
-## 1. One-Line Description
+🔗 **Live Demo:** https://security-advisory-tracker-4jl7zsfrvhxnunfn9c5dhc.streamlit.app/
 
-A self-healing scraper (built with Bright Data Scraper Studio) that tracks GitHub Security Advisories, flags actively-exploited CVEs using CISA KEV data, and surfaces them in a clean, chart-driven dashboard.
+`Python` · `Streamlit` · `SQLite` · `Bright Data` · `CISA KEV`
 
 ---
 
-## 2. Problem
+## 🚀 Live Demo
 
-Vulnerability information is fragmented across many sources and changes constantly. Manually checking advisories is slow, and raw CVE feeds don't tell a reader which vulnerabilities are actually being exploited in the wild. Scrapers break on website layout changes without notifying anyone, and beginners struggle to build scrapers resilient enough to trust.
+[**Open Security Advisory Tracker**](https://security-advisory-tracker-4jl7zsfrvhxnunfn9c5dhc.streamlit.app/)
 
----
-
-## 3. Solution
-
-I built a self-healing scraper that:
-
-- Collects CVE data from GitHub Security Advisories via a custom Bright Data Scraper Studio scraper
-- Enriches each CVE with CISA KEV status (actively exploited → "Patch Now")
-- Normalizes and deduplicates the data into one schema
-- Displays it in a dark, chart-driven dashboard built for fast triage
-- Logs every fallback trigger, so scraper resilience is demonstrable, not just claimed
+The public deployment runs entirely from the committed sample fixture (50 real advisories from the actual Bright Data run). It does **not** require a Bright Data API key and exposes no secrets.
 
 ---
 
-## 4. Key Features
+## 🧩 Problem
 
-- **Self-Healing Scraper:** Two-layer fallback strategy for critical fields (primary selector → fallback selector/regex)
-- **CISA KEV Enrichment:** Automatically flags actively exploited vulnerabilities with "Patch Now" alerts
-- **Dark-Themed Dashboard:** Severity breakdown chart, filterable table, ecosystem filtering, KEV status badges
-- **Scraper Health Panel:** Shows last run time, fallback count, and failure count for transparency
-- **GHSA ID Fallback:** Handles advisories without CVE IDs by using GHSA IDs as primary keys
-- **UPSERT Logic:** Updates KEV status when CISA adds new exploited vulnerabilities
+Security advisories are published continuously across many sources. Security teams need structured, searchable vulnerability information to triage fast — but raw web data is inconsistent, and scrapers break when fields are missing or extraction assumptions change.
 
----
+Two additional problems make this harder:
 
-## 5. Demo
+- **Actively exploited vulnerabilities deserve prioritization.** Raw CVE feeds don't tell you which vulnerabilities are being exploited in the wild *today*.
+- **Scrapers fail silently.** When a website layout changes or a field is missing, most scrapers either crash or quietly produce corrupt records.
 
-**Live Demo:** [Insert Streamlit Cloud URL or "Running locally"]  
-**Demo Video:** [Insert YouTube/Drive link]
+The Security Advisory Tracker addresses these problems with a two-layer resilience approach:
 
-**Demo Flow:**
-1. Show the dashboard with severity chart and "Patch Now" section
-2. Filter by ecosystem (e.g., npm, PyPI)
-3. Click a CVE to view the original advisory
-4. Show Scraper Health panel with fallback metrics
-5. Demonstrate self-healing: simulate broken selector → show fallback in action
+1. **Scraper-level Self-Healing** (in Bright Data Scraper Studio) — makes the custom collector's extraction logic more resilient.
+2. **Application-level Fallback Recovery** (in the Python app) — demonstrates graceful recovery when an extracted record is incomplete.
 
 ---
 
-## 6. Screenshots
+## 🛠️ Solution
 
-![Dashboard Overview](./docs/screenshots/dashboard-overview.png)  
-*Dashboard showing severity chart, Patch Now alerts, and filterable table*
+The complete workflow:
 
-![Scraper Health Panel](./docs/screenshots/scraper-health.png)  
-*Scraper Health panel showing fallback count and last run time*
+```mermaid
+flowchart TD
+    A[Public GitHub Advisory Web Data] --> B[Bright Data Scraper Studio]
+    B --> C[Custom Collector]
+    C --> D[Bright Data Scraper Studio Self-Healing]
+    D --> E[Structured Scraper Output]
+    E --> F[Normalization]
+    F --> G[Validation]
+    G --> H[CISA KEV Enrichment]
+    H --> I[SQLite Database]
+    I --> J[Streamlit Security Dashboard]
+```
 
-*(Screenshots to be added)*
+Bright Data collect raw advisory records from GitHub Security Advisories. The Python pipeline normalizes and validates each record, deduplicates by CVE/GHSA ID, enriches with CISA KEV status, and persists to SQLite. The Streamlit dashboard reads from SQLite and provides search, filters, severity monitoring, a "Patch Now" section, scraper health tracking, and an application-level fallback recovery demonstration.
 
 ---
 
-## 7. Tech Stack
+## 🔧 Self-Healing Architecture
+
+This project demonstrates **two separate recovery layers**.
+
+### 1. Bright Data Scraper Studio Self-Healing
+
+The project uses a **custom Bright Data Scraper Studio collector** built specifically for GitHub Security Advisories. During development, the built-in **Bright Data Self-Healing** feature was used to refactor the collector's extraction logic and introduce more resilient extraction behavior. The updated collector was then saved to production and successfully executed.
+
+**Verified production result:**
+
+| Metric | Value |
+|--------|-------|
+| Records fetched | 10,000 |
+| Valid records | 9,998 |
+| Failed crawls | 2 |
+| Success rate | **99.98%** |
+| Pages fulfilled | ~10.4K |
+
+> Note: We do not claim that this particular production run demonstrated a live website DOM/structure failure being automatically repaired. The Self-Healing feature was used during development to make the collector's extraction logic more resilient.
+
+### 2. Application Fallback Recovery
+
+The Streamlit application contains a **deterministic controlled demonstration** showing how the application can recover when a required field is unavailable after extraction.
+
+```text
+Application Fallback Recovery
+        ↓
+Controlled demonstration
+        ↓
+Handles missing required extracted fields
+```
+
+This demonstration simulates a primary extraction failure and shows recovery through an application-level fallback path. It is **separate from** Bright Data Scraper Studio's Self-Healing capability.
+
+> **Important:** This is an application-level recovery demonstration. Scraper-level Self-Healing is handled by Bright Data Scraper Studio.
+
+---
+
+## ✨ Key Features
+
+- **Custom Bright Data scraper** — collects GitHub Security Advisories at scale
+- **Large-scale advisory collection** — 10,000 records fetched, 9,998 valid
+- **Graceful handling of malformed records** — malformed records are skipped without crashing the run
+- **Normalization and deduplication** — consistent schema, UPSERT by CVE/GHSA ID
+- **CISA KEV enrichment** — flags known exploited vulnerabilities
+- **Severity monitoring** — color-coded CRITICAL / HIGH / MODERATE / LOW breakdown
+- **Patch Now section** — prominently surfaces CISA KEV flagged advisories
+- **Search and filtering** — by title, CVE/GHSA ID, affected package, severity, ecosystem, and KEV status
+- **Scraper health and run history** — records fetched, fallbacks, failures, and overall health in one panel
+- **Application-level fallback demonstration** — a controlled process-test of the primary → fallback → recovered path
+- **Bright Data Scraper Studio Self-Healing** — used during development to make extraction logic more resilient
+- **Streamlit dashboard** — dark, SOC-style, responsive, and beginner friendly
+- **Streamlit Community Cloud deployment** — public demo runs from a committed fixture
+
+---
+
+## 🚀 Bright Data Scraper Studio
+
+### Why Bright Data?
+
+Bright Data Scraper Studio provides the custom web-data collection layer for this project.
+
+- The **custom collector** was created specifically for this project — it targets public GitHub Advisory data.
+- **Bright Data Scraper Studio Self-Healing** was used during scraper development to refactor and improve the resilience of the extraction logic.
+- The structured output from the scraper feeds the application's processing pipeline.
+
+**Verified production run:**
+
+- 10,000 records fetched
+- 9,998 valid records
+- 2 failed crawls
+- 99.98% success rate
+- ~10.4K pages processed
+
+The raw Bright Data output is kept out of Git (gitignored) and is never exposed publicly.
+
+[Visit Bright Data →](https://brightdata.com/)
+
+---
+
+## 📸 Screenshots
+
+*(Screenshot files will be added here before final submission.)*
+
+- **Main Security Advisory Tracker dashboard** — overview metrics, severity chart, Patch Now section, advisory table, scraper health, and the fallback demonstration.
+
+  `docs/assets/dashboard.png`
+
+- **Application Fallback Recovery demonstration** — the controlled application-level recovery flow.
+
+  `docs/assets/self-healing.png`
+
+- **Bright Data Scraper Studio custom scraper / Self-Healing workflow** — the custom collector and the Self-Healing feature.
+
+  `docs/assets/brightdata-scraper.png`
+
+- **Bright Data production run** — showing 9,998 records, 99.98% success rate, 2 failed crawls, ~10.4K pages.
+
+  `docs/assets/brightdata-results.png`
+
+---
+
+## 🔄 Application Fallback Recovery
+
+A core engineering challenge in web scraping is resilience. When an extracted record is incomplete or fails validation, the application should recover gracefully instead of crashing or silently dropping data.
+
+The application-level fallback recovery path works like this:
+
+```mermaid
+flowchart TD
+    A[Primary Extraction] --> B[Incomplete / Invalid Record]
+    B --> C[Fallback Extraction]
+    C --> D[Record Validation]
+    D --> E[Recovered Record]
+```
+
+The dashboard includes a **controlled, deterministic fallback demonstration** (the "Application Fallback Recovery" section). It simulates an incomplete extraction on a real fixture record and shows the application recovering the record, the recovered value, and the final extraction method.
+
+> **Note:** This is an application-level fallback demonstration. Scraper-level Self-Healing is handled by Bright Data Scraper Studio.
+
+---
+
+## 📚 Documentation
+
+Detailed technical documentation lives in the repository:
+
+- [**Architecture**](docs/ARCHITECTURE-Security-Advisory-Tracker.md)
+- [**Database Schema**](docs/Database%20Schema%20Design.md)
+- [**Product Requirements Document**](docs/PRD-Security-Advisory-Tracker.md)
+- [**API Specification**](docs/API%20Specification.md)
+
+---
+
+## 🧰 Tech Stack
 
 | Layer | Technology | Purpose |
 |-------|------------|---------|
-| **Language** | Python 3.11+ | Single language across scraper, pipeline, and dashboard |
-| **Frontend UI** | Streamlit | Monolithic Python web framework for dashboard |
-| **Database** | SQLite3 | Zero-config, single-file relational database |
-| **Data Collection** | Bright Data Scraper Studio | Custom scraper for GitHub Advisories |
-| **Enrichment** | CISA KEV JSON Feed | Direct HTTP fetch for actively exploited CVEs |
-| **Data Processing** | Python (requests, sqlite3) | Normalization, enrichment, persistence |
+| **Language** | Python 3.11+ | Scraper, pipeline, dashboard |
+| **Data Collection** | Bright Data Scraper Studio | Custom scraper for GitHub Advisories + Self-Healing |
+| **Frontend UI** | Streamlit | Dashboard, charts, filters |
+| **Database** | SQLite (built-in `sqlite3`) | Single-file relational storage |
+| **Enrichment** | CISA KEV JSON feed (requests) | Known-exploited flags |
+| **Data Processing** | `requests`, `pandas`, `pathlib` | Normalize, enrich, deduplicate, persist |
 
 ---
 
-## 8. Architecture Overview
-
-```
-┌─────────────────────┐
-│   User (Dashboard)  │
-│   (Streamlit UI)    │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│   app.py            │
-│   (Streamlit App)   │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│   pipeline/         │
-│   run_pipeline.py   │
-└──────────┬──────────┘
-           │
-     ┌─────┴─────┐
-     │           │
-     ▼           ▼
-┌─────────┐ ┌──────────┐
-│ scraper/│ │pipeline/ │
-│ run_    │ │enrich_   │
-│ scraper.│ │kev.py    │
-│ py      │ │          │
-└────┬────┘ └────┬─────┘
-     │           │
-     ▼           ▼
-┌─────────────┐ ┌──────────────┐
-│ Bright Data │ │ CISA KEV     │
-│ Scraper     │ │ JSON Feed    │
-│ Studio      │ │              │
-└─────────────┘ └──────────────┘
-           │
-           ▼
-┌─────────────────────┐
-│   data/             │
-│   advisories.db     │
-│   (SQLite)          │
-└─────────────────────┘
-```
-
-**Data Flow:**
-1. User clicks "Refresh Data" → triggers pipeline
-2. Scraper fetches GitHub Advisories via Bright Data
-3. Pipeline normalizes data and enriches with CISA KEV
-4. Data is written to SQLite with UPSERT logic
-5. Streamlit reads from SQLite and renders dashboard
-
----
-
-## 9. Project Structure
+## 📁 Project Structure
 
 ```
 security-advisory-tracker/
-├── app.py                  # Main Streamlit UI entrypoint
-├── requirements.txt        # Python dependencies
-├── .env.example            # Environment variable template
-├── README.md               # This file
-├── docs/
-│   ├── ARCHITECTURE.md     # System architecture document
-│   ├── DATABASE_SCHEMA.md  # Database schema design
-│   ├── API_SPECIFICATION.md # API specification
-│   └── screenshots/        # Dashboard screenshots
+├── app.py                     # Streamlit dashboard
+├── requirements.txt           # Python dependencies
+├── README.md                  # This file
+├── .env.example               # Env template (never commit .env)
 ├── data/
-│   ├── advisories.db       # SQLite database (gitignored)
-│   └── db.py               # Database connections and queries
+│   ├── db.py                  # SQLite connection layer
+│   └── sample_scraper_output.json   # Committed 50-record fixture
+├── docs/
+│   ├── ARCHITECTURE-Security-Advisory-Tracker.md
+│   ├── Database Schema Design.md
+│   ├── PRD-Security-Advisory-Tracker.md
+│   ├── API Specification.md
+│   └── assets/                    # Screenshots
 ├── pipeline/
-│   ├── run_pipeline.py     # Main orchestrator function
-│   ├── normalize.py        # Data sanitization & schema mapping
-│   └── enrich_kev.py       # CISA KEV JSON fetcher and matcher
+│   ├── run_pipeline.py         # Orchestrator
+│   ├── normalize.py            # Validation / GHSA fallback
+│   └── enrich_kev.py           # CISA KEV enrichment
 └── scraper/
-    ├── run_scraper.py      # Bright Data Scraper Studio wrapper
-    └── config.py           # FIELD_RULES and fallback configuration
+    ├── run_scraper.py          # Fixture/live loader + fallback demo
+    └── config.py               # Output contract / constants
 ```
 
 ---
 
-## 10. Prerequisites
-
-- Python 3.11 or higher
-- Bright Data account with Scraper Studio access
-- Git (for cloning the repository)
-- Basic command-line knowledge
-
----
-
-## 11. Run Locally
+## 💻 Installation / Local Setup
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/krithikashree1957/security-advisory-tracker.git
-   cd security-advisory-tracker
+   git clone https://github.com/krithikashree1957/Security-Advisory-Tracker.git
+   cd Security-Advisory-Tracker
    ```
 
 2. **Create a virtual environment (recommended):**
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   source venv/bin/activate   # Windows: venv\Scripts\activate
    ```
 
 3. **Install dependencies:**
@@ -190,203 +248,128 @@ security-advisory-tracker/
    pip install -r requirements.txt
    ```
 
-4. **Run the dashboard:**
-   ```bash
-   streamlit run app.py
-   ```
-
-   The dashboard opens at `http://localhost:8501`.
-
-   **No Bright Data API key is required to run the dashboard.** If `data/advisories.db` does not exist, the app automatically bootstraps from the committed fixture (`data/sample_scraper_output.json`, ~50 real advisories). If a populated database already exists (e.g. your local 9,998-record dataset), it is used as-is and never overwritten.
-
-   To run the full pipeline manually (fixture or live Bright Data output):
-   ```bash
-   python -m pipeline.run_pipeline --mode fixture
-   python -m pipeline.run_pipeline --mode live   # requires data/brightdata_output.json
-   ```
+> **No Bright Data API key is required** for local development. The app bootstraps from the committed fixture when no database exists, and uses an existing populated database (such as your local 9,998-record dataset) as-is — it is never overwritten.
 
 ---
 
-## 12. Environment Variables
-
-Create a `.env` file in the root directory (copy from `.env.example`):
-
-```env
-# Bright Data API Configuration
-BRIGHT_DATA_API_KEY=your_api_key_here
-
-# Optional: Streamlit Secrets (if deploying to Streamlit Cloud)
-# Add via Streamlit Cloud dashboard instead of .env
-```
-
-**Important:** Never commit your `.env` file to Git — it's already in `.gitignore`.
-
----
-
-## 13. How to Run Frontend (Dashboard)
-
-The frontend and backend run together as a single Streamlit application:
+## ▶️ Running Locally
 
 ```bash
 streamlit run app.py
 ```
 
-The dashboard will open automatically at `http://localhost:8501`.
+The dashboard opens at `http://localhost:8501`.
 
-**Features:**
-- Severity breakdown chart
-- Filterable advisories table
-- "Patch Now" alert panel for KEV-flagged CVEs
-- Scraper Health panel
-- Ecosystem and severity filters
+- If `data/advisories.db` does not exist, the app automatically bootstraps from `data/sample_scraper_output.json` (50 real advisories).
+- Existing populated databases are preserved and used directly.
 
----
-
-## 14. How to Run Backend (Scraper Pipeline)
-
-The pipeline runs automatically when you:
-- First load the app, OR
-- Click the "Refresh Data" button in the dashboard
-
-To run the pipeline manually (without the UI):
+To run the pipeline manually:
 
 ```bash
-python pipeline/run_pipeline.py
-```
-
-This will:
-1. Trigger the Bright Data scraper
-2. Normalize the data
-3. Enrich with CISA KEV
-4. Write to SQLite
-
----
-
-## 15. Database Setup
-
-The database is created automatically on first run. No manual setup required.
-
-**Database file:** `data/advisories.db` (SQLite)
-
-**Tables:**
-- `advisories` — Stores vulnerability data
-- `scraper_runs` — Logs scraper execution metadata
-
-**Indexes:**
-- `idx_severity` — Fast severity filtering
-- `idx_kev` — Fast KEV status queries
-- `idx_ecosystem` — Fast ecosystem filtering
-
-To inspect the database manually:
-
-```bash
-sqlite3 data/advisories.db
-sqlite> SELECT * FROM advisories LIMIT 5;
+python -m pipeline.run_pipeline --mode fixture
+python -m pipeline.run_pipeline --mode live    # requires data/brightdata_output.json
 ```
 
 ---
 
-## 16. API Documentation
+## ☁️ Deployment
 
-**This project does not expose a traditional REST API.** It uses a monolithic Streamlit architecture where all logic runs in-process.
+This project is deployed to **Streamlit Community Cloud**.
 
-**Why no REST API?**
-- Prioritizes simplicity for a one-week hackathon
-- Streamlit handles all UI and data access directly via SQLite queries
-- Adding a REST API layer would introduce unnecessary complexity
+- Public demo runs on the committed 50-record fixture — **no Bright Data API key required**.
+- On a fresh deployment, `app.py` detects the missing database and bootstraps from the fixture.
+- The deployed database is ephemeral and re-bootstraps on each cold start.
+- Secrets (`.env`, API keys) must **never** be committed — they are gitignored.
 
-**Internal Data Access Patterns:**
-- Direct SQLite queries from Streamlit (see `data/db.py`)
-- External API integrations: Bright Data Scraper Studio and CISA KEV feed
-
-**Hypothetical REST Endpoints:**
-If I were to add an API layer later, I've designed hypothetical endpoints in [`docs/API_SPECIFICATION.md`](./docs/API_SPECIFICATION.md).
+To deploy your own copy: push to GitHub → [share.streamlit.io](https://share.streamlit.io) → New app → main file `app.py` → Deploy.
 
 ---
 
-## 17. Testing
+## 🔄 Data Flow
 
-**Manual Testing:**
-1. Run the dashboard: `streamlit run app.py`
-2. Click "Refresh Data" and verify data loads
-3. Filter by ecosystem and severity
-4. Check Scraper Health panel for fallback metrics
-5. Click a CVE link to verify it opens the original advisory
-
-**Automated Testing (Future):**
-- Unit tests for normalization logic
-- Integration tests for KEV enrichment
-- End-to-end tests for pipeline execution
+1. **Collect** — Bright Data runs the custom collector on public GitHub Advisory data.
+2. **Validate** — `scraper/run_scraper.py` checks every record against required fields; malformed records are counted and skipped without crashing.
+3. **Normalize / Deduplicate** — `pipeline/normalize.py` maps raw records to database schema and falls back to GHSA IDs when CVE IDs are missing.
+4. **Enrich** — `pipeline/enrich_kev.py` merges CISA KEV known-exploited status (`in_cisa_kev = 1` → "Patch Now").
+5. **Persist** — `data/db.py` writes to SQLite (UPSERT) and logs run metadata.
+6. **Present** — `app.py` reads SQLite and renders the dashboard.
 
 ---
 
-## 18. Deploy to Streamlit Community Cloud
+## 🎥 Demo Video
 
-1. **Push your code to GitHub** (ensure `data/advisories.db` and `data/brightdata_output.json` are gitignored — they are).
-2. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub.
-3. Click **"New app"**, select your repository, set the main file to `app.py`, and deploy.
-4. No secrets or API keys are required.
-
-**How the deployed demo works:**
-- A fresh deployment has no local SQLite database.
-- On first load, `app.py` detects the missing database and automatically bootstraps it from the committed fixture (`data/sample_scraper_output.json`, ~50 real advisories).
-- The dashboard then works exactly like the local version — filters, search, Patch Now, Scraper Health, and Self-Healing Demo all function.
-- No `BRIGHT_DATA_API_KEY` is needed; the deployed demo runs entirely from the committed fixture data.
-- The SQLite database is ephemeral on Streamlit Cloud and re-bootstraps on each cold start.
+> Demo video will be added before final submission.
 
 ---
 
-## 19. Future Improvements
+## 🏆 Hackathon Story
 
-**Out of Scope for Hackathon:**
-- Multiple fallback strategies per field (beyond 2 layers)
-- Real-time alerts for new KEV entries (Slack/Email notifications)
-- Historical tracking (show vulnerabilities over time)
+### Problem
+
+Security advisories are continuously published and require fast triage.
+
+### Solution
+
+Security Advisory Tracker collects public GitHub advisory data through a custom Bright Data Scraper Studio collector, processes and enriches the data, and presents it through a security-focused dashboard.
+
+### Why Bright Data
+
+Bright Data Scraper Studio provides the custom web-data collection layer, and its Self-Healing capability improves the resilience of the extraction logic.
+
+### Application intelligence
+
+The application then normalizes, validates, enriches, stores, and visualizes the collected data.
+
+---
+
+## 🧭 Demo Flow
+
+1. Open the live dashboard.
+2. Show overall advisory metrics.
+3. Demonstrate severity/search/filter functionality.
+4. Show advisory records.
+5. Show Scraper Health and Bright Data run statistics.
+6. Explain the Bright Data Scraper Studio Self-Healing layer.
+7. Trigger the Application Fallback Recovery demonstration.
+8. Explain the difference between scraper-level Self-Healing and application-level fallback recovery.
+
+---
+
+## 📊 Results
+
+Real collection statistics from the Bright Data run:
+
+| Metric | Value |
+|--------|-------|
+| Records fetched | 10,000 |
+| Valid records | 9,998 |
+| Failed crawls | 2 |
+| Success rate | **99.98%** |
+| Pages fulfilled | ~10.4K |
+
+> **Important:** The public demo presents the committed **50-record fixture** (a safe subset of the real Bright Data output). The full 9,998-record dataset is used locally in the original pipeline where the full output file is available.
+
+---
+
+## 🔜 Future Improvements
+
+- Multiple fallback strategies beyond the current single fallback path
+- Real-time alerting / notifications for newly added KEV CVEs
+- Historical trend tracking (vulnerability data over time)
 - Automated scheduling (cron / GitHub Actions)
-- User accounts and personalized dashboards
-- Advanced AI/ML models for vulnerability prediction
-
-**Potential Enhancements:**
-- Add NVD or OSV.dev as additional data sources
-- Implement EPSS or SSVC scoring for better prioritization
-- Add export functionality (CSV, JSON)
-- Improve scraper resilience with ML-based selector prediction
+- CSV / JSON export
+- NVD / OSV.dev integration plus EPSS / SSVC scoring
 
 ---
 
-## 20. Team Members
+## License
 
-**Solo Project**  
-**Author:** KRITHIKA SHREE K  
-**GitHub:** [@krithikashree1957](https://github.com/krithikashree1957)
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
----
+## AI Assistance Disclosure
 
-## 21. Acknowledgments
-
-- **Hackathon:** Into the Scrape-Verse by WeMakeDevs × Bright Data
-- **Data Sources:**
-  - GitHub Security Advisories: https://github.com/advisories
-  - CISA Known Exploited Vulnerabilities: https://www.cisa.gov/known-exploited-vulnerabilities-catalog
-- **Tools:**
-  - Bright Data Scraper Studio
-  - Streamlit
-  - SQLite
+AI coding assistants were used selectively during development, including Cline, for limited scaffolding, debugging, code suggestions, and documentation assistance. The project architecture, implementation decisions, integration, testing, and verification were reviewed and understood by the project team.
 
 ---
 
-## 22. License
-
-This project is built for the Scrape-Verse Hackathon. All data sources are publicly accessible and used in compliance with their respective terms of service.
-
----
-
-## 23. Contact
-
-For questions or feedback:
-- **GitHub:** [@krithikashree1957](https://github.com/krithikashree1957)
-- **Email:** krithikashr@gmail.com
-
----
-
-**Built with ❤️ for the Scrape-Verse Hackathon**
+**Built with ❤️ for the Scrapeverse Hackathon**
