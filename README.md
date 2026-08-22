@@ -1,6 +1,6 @@
 # 🛡️ Security Advisory Tracker
 
-A security-advisory monitoring system that collects GitHub Security Advisories with a custom Bright Data scraper, normalizes and deduplicates them, flags actively exploited vulnerabilities using the CISA KEV catalog, and surfaces everything in a searchable Streamlit dashboard.
+A security-advisory monitoring system that collects GitHub Security Advisories with a custom Bright Data scraper, normalizes and deduplicates them, flags actively exploited vulnerabilities using th[...]
 
 **Hackathon:** Scrapeverse Hackathon by WeMakeDevs × Bright Data
 
@@ -20,7 +20,7 @@ The public deployment runs entirely from the committed sample fixture (50 real a
 
 ## 🧩 Problem
 
-Security advisories are published continuously across many sources. Security teams need structured, searchable vulnerability information to triage fast — but raw web data is inconsistent, and scrapers break when fields are missing or extraction assumptions change.
+Security advisories are published continuously across many sources. Security teams need structured, searchable vulnerability information to triage fast — but raw web data is inconsistent, and sc[...]
 
 Two additional problems make this harder:
 
@@ -51,7 +51,7 @@ flowchart TD
     I --> J[Streamlit Security Dashboard]
 ```
 
-Bright Data collect raw advisory records from GitHub Security Advisories. The Python pipeline normalizes and validates each record, deduplicates by CVE/GHSA ID, enriches with CISA KEV status, and persists to SQLite. The Streamlit dashboard reads from SQLite and provides search, filters, severity monitoring, a "Patch Now" section, scraper health tracking, and an application-level fallback recovery demonstration.
+Bright Data collect raw advisory records from GitHub Security Advisories. The Python pipeline normalizes and validates each record, deduplicates by CVE/GHSA ID, enriches with CISA KEV status, and [...]
 
 ---
 
@@ -61,7 +61,7 @@ This project demonstrates **two separate recovery layers**.
 
 ### 1. Bright Data Scraper Studio Self-Healing
 
-The project uses a **custom Bright Data Scraper Studio collector** built specifically for GitHub Security Advisories. During development, the built-in **Bright Data Self-Healing** feature was used to refactor the collector's extraction logic and introduce more resilient extraction behavior. The updated collector was then saved to production and successfully executed.
+The project uses a **custom Bright Data Scraper Studio collector** built specifically for GitHub Security Advisories. During development, the built-in **Bright Data Self-Healing** feature was used[...]
 
 **Verified production result:**
 
@@ -73,7 +73,7 @@ The project uses a **custom Bright Data Scraper Studio collector** built specifi
 | Success rate | **99.98%** |
 | Pages fulfilled | ~10.4K |
 
-> Note: We do not claim that this particular production run demonstrated a live website DOM/structure failure being automatically repaired. The Self-Healing feature was used during development to make the collector's extraction logic more resilient.
+> Note: We do not claim that this particular production run demonstrated a live website DOM/structure failure being automatically repaired. The Self-Healing feature was used during development to [...]
 
 ### 2. Application Fallback Recovery
 
@@ -87,7 +87,7 @@ Controlled demonstration
 Handles missing required extracted fields
 ```
 
-This demonstration simulates a primary extraction failure and shows recovery through an application-level fallback path. It is **separate from** Bright Data Scraper Studio's Self-Healing capability.
+This demonstration simulates a primary extraction failure and shows recovery through an application-level fallback path. It is **separate from** Bright Data Scraper Studio's Self-Healing capabilit[...]
 
 > **Important:** This is an application-level recovery demonstration. Scraper-level Self-Healing is handled by Bright Data Scraper Studio.
 
@@ -159,7 +159,7 @@ The raw Bright Data output is kept out of Git (gitignored) and is never exposed 
 
 ## 🔄 Application Fallback Recovery
 
-A core engineering challenge in web scraping is resilience. When an extracted record is incomplete or fails validation, the application should recover gracefully instead of crashing or silently dropping data.
+A core engineering challenge in web scraping is resilience. When an extracted record is incomplete or fails validation, the application should recover gracefully instead of crashing or silently d[...]
 
 The application-level fallback recovery path works like this:
 
@@ -171,7 +171,7 @@ flowchart TD
     D --> E[Recovered Record]
 ```
 
-The dashboard includes a **controlled, deterministic fallback demonstration** (the "Application Fallback Recovery" section). It simulates an incomplete extraction on a real fixture record and shows the application recovering the record, the recovered value, and the final extraction method.
+The dashboard includes a **controlled, deterministic fallback demonstration** (the "Application Fallback Recovery" section). It simulates an incomplete extraction on a real fixture record and sho[...]
 
 > **Note:** This is an application-level fallback demonstration. Scraper-level Self-Healing is handled by Bright Data Scraper Studio.
 
@@ -248,7 +248,7 @@ security-advisory-tracker/
    pip install -r requirements.txt
    ```
 
-> **No Bright Data API key is required** for local development. The app bootstraps from the committed fixture when no database exists, and uses an existing populated database (such as your local 9,998-record dataset) as-is — it is never overwritten.
+> **No Bright Data API key is required** for local development. The app bootstraps from the committed fixture when no database exists, and uses an existing populated database (such as your local [...]
 
 ---
 
@@ -310,7 +310,7 @@ Security advisories are continuously published and require fast triage.
 
 ### Solution
 
-Security Advisory Tracker collects public GitHub advisory data through a custom Bright Data Scraper Studio collector, processes and enriches the data, and presents it through a security-focused dashboard.
+Security Advisory Tracker collects public GitHub advisory data through a custom Bright Data Scraper Studio collector, processes and enriches the data, and presents it through a security-focused d[...]
 
 ### Why Bright Data
 
@@ -347,7 +347,7 @@ Real collection statistics from the Bright Data run:
 | Success rate | **99.98%** |
 | Pages fulfilled | ~10.4K |
 
-> **Important:** The public demo presents the committed **50-record fixture** (a safe subset of the real Bright Data output). The full 9,998-record dataset is used locally in the original pipeline where the full output file is available.
+> **Important:** The public demo presents the committed **50-record fixture** (a safe subset of the real Bright Data output). The full 9,998-record dataset is used locally in the original pipelin[...]
 
 ---
 
@@ -368,8 +368,16 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## AI Assistance Disclosure
 
-AI coding assistants were used selectively during development, including Cline, for limited scaffolding, debugging, code suggestions, and documentation assistance. The project architecture, implementation decisions, integration, testing, and verification were reviewed and understood by the project team.
+AI coding assistants were used selectively during development, including Cline, for limited scaffolding, debugging, code suggestions, and documentation assistance. The project architecture, imple[...]
 
 ---
 
 **Built with ❤️ for the Scrapeverse Hackathon**
+
+---
+
+Krithika Shree K
+
+Project: Security Advisory Tracker
+
+GitHub: [@krithikashree1957](https://github.com/krithikashree1957)
